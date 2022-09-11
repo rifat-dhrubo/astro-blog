@@ -1,0 +1,112 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { MarkdownInstance, Frontmatter } from "../types/frontMatter";
+import CaseStudiesList from "../components/CaseStudiesList";
+// @ts-expect-error
+import groupby from "lodash-es/groupBy";
+
+const posts = await Astro.glob<MarkdownInstance>("./case-studies/*.{md,mdx}");
+
+const categories = posts.map((post) => post.frontmatter.category);
+const uniqueCategories = [...new Set(categories)];
+const sortFunction = (a: MarkdownInstance, b: MarkdownInstance) =>
+  new Date(b.frontmatter.pubDate).valueOf() -
+  new Date(a.frontmatter.pubDate).valueOf();
+
+const defaultPosts = posts.sort(sortFunction).slice(0, 3);
+const groupedPosts: Record<string, MarkdownInstance[]> = groupby(
+  posts,
+  (arr: MarkdownInstance) => arr.frontmatter.category
+);
+
+const filtered: Record<string, Frontmatter[]> = Object.keys(
+  groupedPosts
+).reduce((acc, key) => {
+  return {
+    ...acc,
+    [key]: groupedPosts[key]?.sort(sortFunction).slice(0, 3),
+  };
+}, {});
+
+const data: Record<string, MarkdownInstance[]> = {
+  default: defaultPosts,
+  ...filtered,
+};
+---
+
+<BaseLayout content={{ title: SITE_TITLE, description: SITE_DESCRIPTION }}>
+  <h1
+    class="relative text-[#2e2e2e] text-[46px] leading-[68px] mt-20 font-bold max-w-3xl after:content-[''] after:absolute after:-bottom-2 after:w-36 after:h-1 after:bg-[#777777] after:left-3 lg:after:left-0"
+  >
+    Tanveer solves problems and design interfaces. He loves to craft good story.
+  </h1>
+  <section class="mt-8 flex gap-3">
+    <div class="bg-[#15B760] rounded-full w-6 h-6"></div>
+    <p class="text-[#6B6B6B] text-2xl leading-7">
+      Available for selected projects
+    </p>
+  </section>
+
+  <section class="mt-[52px] text-black text-base leading-[30px]">
+    <p>
+      I tried several times to create case studies and failed. Tried to find out
+      what I was lacking and got depressed over time. I tried again to follow
+      Dribble and Bahnace for inspirations. I got more frustated. Somewhere I
+      felt like people are faking so much to survive or grab the attention for
+      recruiters. It is actually a problem since I found out my way of Micro
+      case studies. My Goal is simple. Write whatever challenges I took and what
+      did not work out for me. I hope you will enjoy the read.
+    </p>
+    <p class="pt-10">
+      You don&apos;t need to hire me or buy me a coffee. Instead save the money
+      and buy an apple for you. World needs healthy people.
+    </p>
+  </section>
+
+  <section class="mt-14">
+    <h2 class="uppercase font-medium text-black">Case Studies</h2>
+    <CaseStudiesList
+      uniqueCategories={uniqueCategories}
+      data={data}
+      client:idle
+    />
+  </section>
+  <section class="bg-[#F8F8F8] full__bleed py-16 mt-28 text-black">
+    <div class="max-w-blog mx-auto px-3 lg:px-0">
+      <h3 class="text-4xl leading-[30px] font-bold">
+        So I&apos;m good for what?
+      </h3>
+      <p class="mt-6 text-base leading-6">
+        The ans is complex or may be I don&apos;t know yet. The world is in a
+        nutshell and I am a small part of the world. I can not claim to be the
+        best fit for you but you never know who can be the best for what
+        situation. I can at least try to explain myself with some of the
+        Industry recognized words.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+        <div>
+          <h4 class="text-2xl leading-7 font-semibold">Service Design</h4>
+          <p class="mt-3 leading-7">
+            Understand your customers entire journey and create services and
+            processes that meet their needs.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-2xl leading-7 font-semibold">UX/UI Design</h4>
+          <p class="mt-3 leading-7">
+            Design digital touchpoints that are intuitive for the users and good
+            for the business.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-2xl leading-7 font-semibold">Design System</h4>
+          <p class="mt-3 leading-7">
+            Unify your digital experience across services and ensure scalability
+            with a design system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../config";
+---
+
+<header class="max-w-blog mx-auto">
+  <nav class="flex justify-between py-2.5 text-black">
+    <HeaderLink href="/">
+      <h2 class="font-semibold text-2xl leading-7">
+        {SITE_TITLE}
+      </h2>
+    </HeaderLink>
+    <div class="flex gap-6">
+      <HeaderLink class="text-black font-medium" href="/case-studies"
+        >Case Studies</HeaderLink
+      >
+      <HeaderLink class="text-black font-medium" href="/about"
+        >My Story</HeaderLink
+      >
+    </div>
+  </nav>
+</header>

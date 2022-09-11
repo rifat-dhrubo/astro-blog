@@ -1,0 +1,55 @@
+---
+import "@fontsource/roboto";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+export interface Props {
+  content: {
+    title: string;
+    description: string;
+    pubDate?: string;
+    updatedDate?: string;
+    heroImage?: string;
+  };
+}
+
+const {
+  content: { title, description },
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+    <main class="wrapper">
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      .wrapper {
+        display: grid;
+        grid-template-columns: 1fr min(832px, 100%) 1fr;
+        margin: auto;
+      }
+      .wrapper > * {
+        grid-column: 2;
+        padding-inline: 12px;
+      }
+      .full__bleed {
+        width: 100%;
+        grid-column: 1 / 4;
+        padding-inline: 0;
+      }
+      @media (min-width: 1024px) {
+        .wrapper > *:not(.full_bleed) {
+          padding-inline: 0;
+        }
+      }
+    </style>
+  </body>
+</html>
