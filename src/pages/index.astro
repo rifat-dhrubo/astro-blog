@@ -3,7 +3,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import type { MarkdownInstance, Frontmatter } from "../types/frontMatter";
 import CaseStudiesList from "../components/CaseStudiesList";
-// @ts-expect-error
+
 import groupby from "lodash-es/groupBy";
 
 const posts = await Astro.glob<MarkdownInstance>("./case-studies/*.{md,mdx}");
@@ -43,6 +43,7 @@ const data: Record<string, MarkdownInstance[]> = {
   </h1>
   <section class="mt-8 flex gap-3">
     <div class="bg-[#15B760] rounded-full w-6 h-6"></div>
+    <div class="bg-[#15B760] rounded-full w-6 h-6 animate-ping absolute"></div>
     <p class="text-[#6B6B6B] text-2xl leading-7">
       Available for selected projects
     </p>

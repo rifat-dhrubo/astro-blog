@@ -1,36 +1,44 @@
 ---
-import "@fontsource/roboto-flex";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import groupby from "lodash-es/groupBy";
+import CaseStudiesList from "../components/CaseStudiesList";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import type { MarkdownInstance } from "../types/frontMatter";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import type { MarkdownInstance, Frontmatter } from "../types/frontMatter";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (
-  await Astro.glob<MarkdownInstance>("./case-studies/*.{md,mdx}")
-).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+const posts = await Astro.glob<MarkdownInstance>("./case-studies/*.{md,mdx}");
+const categories = posts.map((post) => post.frontmatter.category);
+const uniqueCategories = [...new Set(categories)];
+const sortFunction = (a: MarkdownInstance, b: MarkdownInstance) =>
+  new Date(b.frontmatter.pubDate).valueOf() -
+  new Date(a.frontmatter.pubDate).valueOf();
+
+const defaultPosts = posts.sort(sortFunction);
+const groupedPosts: Record<string, MarkdownInstance[]> = groupby(
+  posts,
+  (arr: MarkdownInstance) => arr.frontmatter.category
 );
+
+const filtered: Record<string, Frontmatter[]> = Object.keys(
+  groupedPosts
+).reduce((acc, key) => {
+  return {
+    ...acc,
+    [key]: groupedPosts[key]?.sort(sortFunction),
+  };
+}, {});
+
+const data: Record<string, MarkdownInstance[]> = {
+  default: defaultPosts,
+  ...filtered,
+};
 ---
 
 <BaseLayout content={{ title: SITE_TITLE, description: SITE_DESCRIPTION }}>
-  <section>
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <time datetime={post.frontmatter.pubDate}>
-              {new Date(post.frontmatter.pubDate).toLocaleDateString("en-us", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </time>
-            <a href={post.url}>{post.frontmatter.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+  <section class="mt-20">
+    <CaseStudiesList
+      uniqueCategories={uniqueCategories}
+      data={data}
+      client:idle
+    />
   </section>
 </BaseLayout>

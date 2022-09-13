@@ -6,12 +6,14 @@ specifiers:
   '@astrojs/rss': ^1.0.0
   '@astrojs/sitemap': ^1.0.0
   '@astrojs/tailwind': ^1.0.0
+  '@fontsource/noto-sans': ^4.5.11
   '@fontsource/roboto': ^4.5.8
   '@fontsource/roboto-flex': ^4.5.2
   '@tailwindcss/typography': ^0.5.7
   '@types/lodash': ^4.14.184
   '@types/lodash-es': ^4.17.6
   '@typescript-eslint/parser': ^5.36.2
+  add: ^2.0.6
   astro: ^1.2.1
   eslint: ^8.23.0
   eslint-config-prettier: ^8.5.0
@@ -31,8 +33,10 @@ dependencies:
   '@astrojs/rss': 1.0.0
   '@astrojs/sitemap': 1.0.0
   '@astrojs/tailwind': 1.0.0
+  '@fontsource/noto-sans': 4.5.11
   '@fontsource/roboto': 4.5.8
   '@fontsource/roboto-flex': 4.5.2
+  add: 2.0.6
   astro: 1.2.1
   lodash: 4.17.21
   lodash-es: 4.17.21
@@ -506,6 +510,10 @@ packages:
       - supports-color
     dev: true
 
+  /@fontsource/noto-sans/4.5.11:
+    resolution: {integrity: sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==}
+    dev: false
+
   /@fontsource/roboto-flex/4.5.2:
     resolution: {integrity: sha512-GYG8WbC9K8HdIYwIzgPb7dc4CrMMb0QUOP6IYPeuVvd33PyZRvVvu1CvRzXhqbI+trV37Ti3WBCfJJl9RvsVTQ==}
     dev: false
@@ -919,6 +927,10 @@ packages:
     resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  /add/2.0.6:
+    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
+    dev: false
 
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
