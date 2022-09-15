@@ -13,8 +13,8 @@ specifiers:
   '@types/lodash': ^4.14.184
   '@types/lodash-es': ^4.17.6
   '@typescript-eslint/parser': ^5.36.2
-  add: ^2.0.6
   astro: ^1.2.1
+  copy-to-clipboard: ^3.3.2
   eslint: ^8.23.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-astro: ^0.19.0
@@ -36,8 +36,8 @@ dependencies:
   '@fontsource/noto-sans': 4.5.11
   '@fontsource/roboto': 4.5.8
   '@fontsource/roboto-flex': 4.5.2
-  add: 2.0.6
   astro: 1.2.1
+  copy-to-clipboard: 3.3.2
   lodash: 4.17.21
   lodash-es: 4.17.21
   preact: 10.10.6
@@ -928,10 +928,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  /add/2.0.6:
-    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
-    dev: false
-
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
     dependencies:
@@ -1381,6 +1377,12 @@ packages:
     resolution: {integrity: sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==}
     dependencies:
       safe-buffer: 5.1.2
+    dev: false
+
+  /copy-to-clipboard/3.3.2:
+    resolution: {integrity: sha512-Vme1Z6RUDzrb6xAI7EZlVZ5uvOk2F//GaxKUxajDqm9LhOVM1inxNAD2vy+UZDYsd0uyA9s7b3/FVZPSxqrCfg==}
+    dependencies:
+      toggle-selection: 1.0.6
     dev: false
 
   /core-js-pure/3.25.1:
@@ -4460,6 +4462,10 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+
+  /toggle-selection/1.0.6:
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==}
+    dev: false
 
   /totalist/3.0.0:
     resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==}

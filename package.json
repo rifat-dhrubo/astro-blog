@@ -21,6 +21,7 @@
     "@fontsource/roboto": "^4.5.8",
     "@fontsource/roboto-flex": "^4.5.2",
     "astro": "^1.2.1",
+    "copy-to-clipboard": "^3.3.2",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "preact": "^10.6.5"
