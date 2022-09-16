@@ -15,12 +15,14 @@ const CaseStudiesList = ({ data, uniqueCategories }: Props) => {
   const handleFilterChange = (val: string) => {
     setFilter(val);
   };
-
+  // 444
   return (
     <>
       <section class="mt-6 flex gap-3 flex-wrap">
         <button
-          class="text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full"
+          class={`transition text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full ${
+            filter === "default" ? "bg-[#444] text-white" : null
+          }`}
           onClick={() => handleFilterChange("default")}
         >
           Recent
@@ -28,7 +30,9 @@ const CaseStudiesList = ({ data, uniqueCategories }: Props) => {
         {uniqueCategories.map((category) => (
           <button
             key={category}
-            class="text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full"
+            class={`transition text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full ${
+              filter === category ? "bg-[#444] text-white" : null
+            }`}
             onClick={() => handleFilterChange(category)}
           >
             {category}

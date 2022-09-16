@@ -18,22 +18,49 @@ export interface Props {
   };
 }
 
+const href = Astro.url.href;
 const {
   content: { title, description },
 } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <BaseHead title={title} description={description} />
   </head>
 
-  <body>
+  <body class="scroll-smooth antialiased bg-[#fffefc]">
     <Header />
     <main class="wrapper">
       <slot />
     </main>
     <Footer />
+    <a
+      href={`${href}#top`}
+      class="fixed bottom-4 right-8 group hidden"
+      id="goToTop"
+    >
+      <span class="sr-only">Go to top</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-arrow-up-circle text-gray-800"
+        aria-hidden="true"
+        ><circle cx="12" cy="12" r="10"></circle><polyline
+          points="16 12 12 8 8 12"></polyline><line
+          x1="12"
+          y1="16"
+          x2="12"
+          y2="8"></line>
+      </svg>
+    </a>
     <style is:global>
       .wrapper {
         display: grid;
@@ -56,4 +83,20 @@ const {
       }
     </style>
   </body>
+  <script>
+    document.addEventListener("scroll", () => {
+      const element = document.getElementById("goToTop");
+      const scroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (element) {
+        if (scroll > 300) {
+          element.classList.remove("hidden");
+          element.classList.add("block");
+        } else {
+          element.classList.remove("block");
+          element.classList.add("hidden");
+        }
+      }
+    });
+  </script>
 </html>
