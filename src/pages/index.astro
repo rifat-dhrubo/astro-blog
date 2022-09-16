@@ -37,11 +37,11 @@ const data: Record<string, MarkdownInstance[]> = {
 
 <BaseLayout content={{ title: SITE_TITLE, description: SITE_DESCRIPTION }}>
   <h1
-    class="relative text-[#2e2e2e] text-[46px] leading-[68px] mt-20 font-bold max-w-3xl after:content-[''] after:absolute after:-bottom-2 after:w-36 after:h-1 after:bg-[#777777] after:left-3 lg:after:left-0"
+    class="relative text-[#2e2e2e] text-[46px] leading-[54px] mt-20 font-bold max-w-3xl after:content-[''] after:absolute after:-bottom-8 after:w-36 after:h-1 after:bg-[#777777] after:left-3 lg:after:left-0"
   >
     Tanveer solves problems and design interfaces. He loves to craft good story.
   </h1>
-  <section class="mt-8 flex gap-3">
+  <section class="mt-16 flex gap-3">
     <div class="bg-[#15B760] rounded-full w-6 h-6"></div>
     <div class="bg-[#15B760] rounded-full w-6 h-6 animate-ping absolute"></div>
     <p class="text-[#6B6B6B] text-2xl leading-7">
@@ -66,14 +66,22 @@ const data: Record<string, MarkdownInstance[]> = {
   </section>
 
   <section class="mt-14">
-    <h2 class="uppercase font-medium text-black">Case Studies</h2>
+    <div class="inline-flex items-center justify-between gap-2 w-full">
+      <h2 class="uppercase font-medium text-black">Case Studies</h2>
+      <a
+        href="/case-studies"
+        class="text-[#2e2e2e] underline underline-offset-3 font-bold px-2"
+      >
+        View all</a
+      >
+    </div>
     <CaseStudiesList
       uniqueCategories={uniqueCategories}
       data={data}
       client:idle
     />
   </section>
-  <section class="bg-[#F8F8F8] full__bleed py-16 mt-28 text-black">
+  <section class="bg-[#fffce9] full__bleed py-16 mt-28 text-black">
     <div class="max-w-blog mx-auto px-3 lg:px-0">
       <h3 class="text-4xl leading-[30px] font-bold">
         So I&apos;m good for what?

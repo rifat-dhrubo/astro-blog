@@ -1,5 +1,5 @@
 import { useMemo, useState } from "preact/hooks";
-import type { MarkdownInstance, Frontmatter } from "../../types/frontMatter";
+import type { MarkdownInstance } from "../../types/frontMatter";
 type Props = {
   uniqueCategories: string[];
   data: Record<string, MarkdownInstance[]>;
@@ -43,7 +43,7 @@ const CaseStudiesList = ({ data, uniqueCategories }: Props) => {
               key={post.url}
             >
               <div class="order-2 lg:order-1">
-                <header class="text-2xl leading-9 font-medium">
+                <header class="text-2xl leading-8 font-bold">
                   <a href={post.url ?? "#"}>{post.frontmatter.title}</a>
                 </header>
                 <div id="body" class="mt-3">
