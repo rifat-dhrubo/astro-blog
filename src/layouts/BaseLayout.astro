@@ -20,17 +20,18 @@ export interface Props {
 
 const href = Astro.url.href;
 const {
-  content: { title, description },
+  content: { title, description, heroImage },
 } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} image={heroImage} />
     <link rel="prefetch" href="/logo.svg" />
+    <link rel="prefetch" href="/about-me.jpg" />
   </head>
 
-  <body class="scroll-smooth antialiased bg-[#fffefc]">
+  <body class="scroll-smooth antialiased bg-[#EDF1DB]">
     <Header />
     <main class="wrapper">
       <slot />
@@ -38,7 +39,7 @@ const {
     <Footer />
     <a
       href={`${href}#top`}
-      class="fixed bottom-4 right-8 group hidden"
+      class="fixed bottom-20 md:bottom-4 z-10 right-8 group hidden"
       id="goToTop"
     >
       <span class="sr-only">Go to top</span>

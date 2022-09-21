@@ -20,24 +20,26 @@ const CaseStudiesList = ({ data, uniqueCategories }: Props) => {
     <>
       <section class="mt-6 flex gap-3 flex-wrap">
         <button
-          class={`transition text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full ${
-            filter === "default" ? "bg-[#444] text-white" : null
+          class={`transition text-white text-sm leading-7  px-3 py-0 rounded-full ${
+            filter === "default" ? "bg-[#523857]" : "bg-[#807490]"
           }`}
           onClick={() => handleFilterChange("default")}
         >
           Recent
         </button>
-        {uniqueCategories.map((category) => (
-          <button
-            key={category}
-            class={`transition text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-2 rounded-full ${
-              filter === category ? "bg-[#444] text-white" : null
-            }`}
-            onClick={() => handleFilterChange(category)}
-          >
-            {category}
-          </button>
-        ))}
+        {uniqueCategories.map((category) => {
+          return (
+            <button
+              key={category}
+              class={`transition text-white text-sm leading-7  px-3 py-0 rounded-full ${
+                filter === category ? "bg-[#523857]" : "bg-[#807490]"
+              }`}
+              onClick={() => handleFilterChange(category)}
+            >
+              {category}
+            </button>
+          );
+        })}
       </section>
       <div class="mt-5 border-t border-[#EBEBEB] pt-8 grid gap-10">
         {frontMatters != null &&
@@ -57,7 +59,7 @@ const CaseStudiesList = ({ data, uniqueCategories }: Props) => {
                 </div>
                 <footer class="mt-4 text-[#2E2E2E] text-sm flex gap-3 items-center">
                   <span class="leading-9">{post.frontmatter.pubDate}</span>
-                  <span class="text-[#2e2e2e] text-sm leading-7 bg-[#F0F0F0] px-4 rounded-full">
+                  <span class="text-white text-sm leading-7 bg-[#807490] px-4 rounded-full">
                     {post.frontmatter.category}
                   </span>
                 </footer>
